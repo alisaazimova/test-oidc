@@ -14,7 +14,8 @@ jobs:
     runs-on: ['self-hosted']
     steps:
       # - name: Git clone the repository
-      - uses: actions/checkout@v3    
+      - uses: actions/checkout@v3 
+      - uses: quipper/setup-aws-cli-action@main   
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::564087180491:role/github-ci20230117183754324600000001
