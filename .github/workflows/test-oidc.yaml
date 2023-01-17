@@ -38,6 +38,7 @@ jobs:
               rm -rf /tmp/aws/
               /usr/local/bin/aws --version
               aws ec2 describe-instances --region us-east-2
+              aws s3 ls
 
 
           # - aws version
