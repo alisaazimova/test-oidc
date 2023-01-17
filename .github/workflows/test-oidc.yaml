@@ -24,6 +24,7 @@ jobs:
       # Upload a file to AWS s3
       - name:  list ec2
         run: |
-          - aws ec2 describe-instances --region us-east-2
-          - aws s3 ls
+          - aws version
+          # - aws ec2 describe-instances --region us-east-2
+          # - aws s3 ls
 
