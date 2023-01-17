@@ -1,0 +1,35 @@
+# Sample workflow to access AWS resources when workflow is tied to branch
+# The workflow Creates static website using aws s3
+name: AWS example workflow
+on:
+  push
+env:
+  AWS_REGION : "us-east-2"
+# permission can be added at job level or workflow level    
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+jobs:
+  AWSlist:
+    container:
+      runs-on: ['self-hosted']
+      container:
+        image: ubuntu
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::564087180491:role/github-ci20230117183754324600000001
+          role-session-name: samplerolesession
+          aws-region: ${{ env.AWS_REGION }}
+      # Upload a file to AWS s3
+      - name:  list ec2
+        run: |
+          - aws ec2 describe-instances --region us-east-2
+          - aws s3 ls
+
+Did this doc help you?
+
+Privacy policy
