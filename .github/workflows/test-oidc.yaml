@@ -12,23 +12,12 @@ permissions:
 jobs:
    AwsEC2list:  
     runs-on: ['self-hosted']
-    steps:
-      # - name: Git clone the repository
       - uses: actions/checkout@v3 
-      # - uses: quipper/setup-aws-cli-action@main  
-      # - name: Install AWS CLI v2
-      #   run:  |
-      #         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
-      #         unzip -q /tmp/awscliv2.zip -d /tmp
-      #         rm /tmp/awscliv2.zip
-      #         sudo /tmp/aws/install --update
-      #         rm -rf /tmp/aws/ 
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::564087180491:role/github-ci20230117183754324600000001
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
-      # Upload a file to AWS s3
       - name:  list ec2
         run: |
               curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
@@ -41,7 +30,4 @@ jobs:
               aws s3 ls
 
 
-          # - aws version
-          # - aws ec2 describe-instances --region us-east-2
-          # - aws s3 ls
 
