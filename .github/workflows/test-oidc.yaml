@@ -30,6 +30,3 @@ jobs:
           - aws ec2 describe-instances --region us-east-2
           - aws s3 ls
 
-Did this doc help you?
-
-Privacy policy
