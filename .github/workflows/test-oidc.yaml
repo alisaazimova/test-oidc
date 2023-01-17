@@ -10,21 +10,19 @@ permissions:
       id-token: write   # This is required for requesting the JWT
       contents: read    # This is required for actions/checkout
 jobs:
-    container:
-      runs-on: ['self-hosted']
-      container:
-        image: ubuntu
+   AwsEC2list:  
+    runs-on: ['self-hosted']
     steps:
       # - name: Git clone the repository
-    - uses: actions/checkout@v3    
-    - uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: arn:aws:iam::564087180491:role/github-ci20230117183754324600000001
-        role-session-name: samplerolesession
-        aws-region: ${{ env.AWS_REGION }}
-    # Upload a file to AWS s3
-    - name:  list ec2
-      run: |
-        - aws ec2 describe-instances --region us-east-2
-        - aws s3 ls
+      - uses: actions/checkout@v3    
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::564087180491:role/github-ci20230117183754324600000001
+          role-session-name: samplerolesession
+          aws-region: ${{ env.AWS_REGION }}
+      # Upload a file to AWS s3
+      - name:  list ec2
+        run: |
+          - aws ec2 describe-instances --region us-east-2
+          - aws s3 ls
 
